@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set Up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker Image
+      run: |
+        docker build -t ttl.sh/hello-world:5m .
+        docker push ttl.sh/hello-world:5m 
+
+    - name: Image validation
+      run: |
+        docker run --rm -it ttl.sh/hello-world:5m | grep "Hello world"
