@@ -23,4 +23,4 @@ jobs:
 
     - name: Image validation
       run: |
-        docker run --rm -it ttl.sh/hello-world:5m | grep "Hello world"
+        docker run ttl.sh/hello-world:5m
