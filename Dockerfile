@@ -1,8 +1,8 @@
-#FROM - Image to start building on.
+# Use busybox as the base image
 FROM busybox
 
-#RUN - Runs a command in the container
+# Run a command during the image build process to create a file
 RUN echo "Hello world" > /tmp/hello_world.txt
 
-#CMD - Identifies the command that should be used by default when running the image as a container.
-CMD ["cat", "/tmp/hello_world.txt"]
+# Set CMD to execute 'sh' and then run 'cat /tmp/hello_world.txt' by default
+CMD ["sh", "-c", "cat /tmp/hello_world.txt"]
